@@ -1,6 +1,7 @@
 package io.github.gstfnk.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tasks")
@@ -9,6 +10,7 @@ class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank(message = "Task's description must be not empty")
     private String description;
     private boolean done;
 
