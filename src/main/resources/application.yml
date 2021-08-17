@@ -1,6 +1,11 @@
 spring:
+  main:
+    banner-mode: "off"
   h2.console:
     enabled: true
     path: '/db-h2'
   datasource:
     url: 'jdbc:h2:file:./todoDB'
+task:
+  template:
+    allowMultipleTasks: false
