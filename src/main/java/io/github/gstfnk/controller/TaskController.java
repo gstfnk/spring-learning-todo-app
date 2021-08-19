@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -56,8 +57,17 @@ class TaskController {
         return ResponseEntity.ok(repository.save(updatedTask));
     }
 
+    @Transactional
+    @PatchMapping("/{id}")
+    public ResponseEntity<Task> toggleTask(@PathVariable Integer id) {
+        if(!repository.existsById(id)) return ResponseEntity.notFound().build();
+        repository.findById(id)
+                .ifPresent(task -> task.setDone(!task.isDone()));
+        return ResponseEntity.noContent().build();
+    }
+
     @DeleteMapping("/{id}")
-    ResponseEntity<?> deleteTask(@PathVariable int id) {
+    ResponseEntity<Task> deleteTask(@PathVariable int id) {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
