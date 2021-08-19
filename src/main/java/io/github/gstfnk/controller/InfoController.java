@@ -1,7 +1,6 @@
 package io.github.gstfnk.controller;
 
 import io.github.gstfnk.configuration.TaskConfiguration;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

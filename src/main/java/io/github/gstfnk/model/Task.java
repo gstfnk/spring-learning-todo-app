@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "TASKS")
 public class Task {
     @Id
     @GeneratedValue(generator = "inc")
