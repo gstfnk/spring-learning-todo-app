@@ -53,8 +53,12 @@ class TaskController {
         if (!repository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
-        updatedTask.setId(id);
-        return ResponseEntity.ok(repository.save(updatedTask));
+        repository.findById(id)
+                .ifPresent(task -> {
+                    task.updateFrom(updatedTask);
+                    repository.save(task);
+                });
+        return ResponseEntity.noContent().build();
     }
 
     @Transactional
