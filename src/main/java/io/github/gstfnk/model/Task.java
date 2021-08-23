@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "TASKS")
-public class Task {
+public class Task extends BaseAuditableEntity{
     @Id
     @GeneratedValue(generator = "inc")
     @GenericGenerator(name = "inc", strategy = "increment")
@@ -17,8 +17,6 @@ public class Task {
     private String description;
     private boolean done;
     private LocalDateTime deadline;
-    private LocalDateTime createdOn;
-    private LocalDateTime updatedOn;
 
     public Task() {
     }
@@ -59,15 +57,5 @@ public class Task {
         description = source.description;
         done = source.done;
         deadline = source.deadline;
-    }
-
-    @PrePersist
-    void prePersist() {
-        createdOn = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    void preMerge() {
-        updatedOn = LocalDateTime.now();
     }
 }
