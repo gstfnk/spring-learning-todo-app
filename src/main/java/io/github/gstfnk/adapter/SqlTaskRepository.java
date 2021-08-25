@@ -1,5 +1,7 @@
-package io.github.gstfnk.model;
+package io.github.gstfnk.adapter;
 
+import io.github.gstfnk.model.Task;
+import io.github.gstfnk.model.TaskRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,4 +14,6 @@ interface SqlTaskRepository extends TaskRepository, JpaRepository<Task, Integer>
     @Query(nativeQuery = true, value = "select count(*) > 0 from tasks where id=:id")
     boolean existsById(@Param("id") Integer id);
 
+    @Override
+    boolean existsByDoneIsFalseAndGroup_Id(Integer groupId);
 }
