@@ -3,6 +3,7 @@ package io.github.gstfnk.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
@@ -10,8 +11,7 @@ import javax.validation.constraints.NotBlank;
 @MappedSuperclass
 abstract class BaseTask {
     @Id
-    @GeneratedValue(generator = "inc")
-    @GenericGenerator(name = "inc", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotBlank(message = "Task's description must be not empty")
     private String description;
