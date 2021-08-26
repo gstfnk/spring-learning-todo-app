@@ -1,7 +1,7 @@
 package io.github.gstfnk.adapter;
 
-import io.github.gstfnk.model.TaskGroup;
-import io.github.gstfnk.model.TaskGroupRepository;
+import io.github.gstfnk.model.Project;
+import io.github.gstfnk.model.ProjectRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,11 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-interface SqlTaskGroupRepository extends TaskGroupRepository, JpaRepository<TaskGroup, Integer> {
+interface SqlProjectRepository extends ProjectRepository, JpaRepository<Project, Integer> {
     @Override
-    @Query("from TaskGroup g join fetch g.tasks")
-    List<TaskGroup> findAll();
-
-    @Override
-    boolean existsByDoneIsFalseAndProject_Id(Integer projectId);
+    @Query("select distinct p from Project p join fetch p.steps")
+    List<Project> findAll();
 }
