@@ -9,6 +9,9 @@ import java.util.Set;
 public class TaskGroup extends BaseTask {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private Set<Task> tasks;
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
 
     public TaskGroup() {
     }
@@ -19,5 +22,13 @@ public class TaskGroup extends BaseTask {
 
     void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    Project getProject() {
+        return project;
+    }
+
+    void setProject(Project project) {
+        this.project = project;
     }
 }
