@@ -17,6 +17,11 @@ public class Task extends BaseTask {
     public Task() {
     }
 
+    public Task(String description, LocalDateTime deadline) {
+        this.setDescription(description);
+        this.deadline = deadline;
+    }
+
     public LocalDateTime getDeadline() {
         return deadline;
     }
