@@ -1,6 +1,5 @@
 package io.github.gstfnk.model.projection;
 
-import io.github.gstfnk.model.Task;
 import io.github.gstfnk.model.TaskGroup;
 
 import java.util.Set;
