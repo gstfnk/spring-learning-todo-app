@@ -19,12 +19,11 @@ public class Project {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     private Set<ProjectStep> steps;
 
-    public int getId() {
-        return id;
+    Project() {
     }
 
-    void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public String getDescription() {
