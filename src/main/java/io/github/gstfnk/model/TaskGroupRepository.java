@@ -10,5 +10,5 @@ public interface TaskGroupRepository {
 
     boolean existsByDoneIsFalseAndProject_Id(Integer projectId);
 
-    TaskGroup save(TaskGroup entity);
+    TaskGroup save(TaskGroup entity) throws NoSuchFieldException;
 }
