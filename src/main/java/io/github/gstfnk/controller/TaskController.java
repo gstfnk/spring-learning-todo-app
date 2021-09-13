@@ -58,7 +58,7 @@ class TaskController {
                     task.updateFrom(updatedTask);
                     repository.save(task);
                 });
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(updatedTask);
     }
 
     @Transactional
@@ -75,5 +75,4 @@ class TaskController {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
 }
