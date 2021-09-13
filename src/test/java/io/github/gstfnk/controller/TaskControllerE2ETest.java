@@ -10,6 +10,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 
 import java.time.LocalDateTime;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -32,5 +33,19 @@ class TaskControllerE2ETest {
         Task[] result = restTemplate.getForObject("http://localhost:" + port + "/tasks", Task[].class);
         //  then
         assertThat(result).hasSize(initial + 2);
+    }
+
+    @Test
+    void httpGet_returnsGivenTask() {
+        //  given
+        Task toSave = new Task("givenTask", LocalDateTime.now());
+        int savedTaskId = taskRepository.save(toSave).getId();
+        //  when
+        Task result = restTemplate.getForObject
+                ("http://localhost:" + port + "/tasks/" + savedTaskId, Task.class);
+        //  then
+        assertThat(result.getId()).isEqualTo(savedTaskId);
+        assertThat(result.getDescription()).isEqualTo(toSave.getDescription());
+        assertThat(result.isDone()).isEqualTo(toSave.isDone());
     }
 }
