@@ -1,6 +1,8 @@
 package io.github.gstfnk.model;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -12,14 +14,21 @@ public class Task extends BaseTask {
     @JoinColumn(name = "task_group_id")
     private TaskGroup group;
     @Embedded
-    private Audit audit = new Audit();
+    private final Audit audit = new Audit();
 
-    public Task() {
-    }
 
     public Task(String description, LocalDateTime deadline) {
+        this(description, deadline, null);
+    }
+
+    public Task(String description, LocalDateTime deadline, TaskGroup group) {
         this.setDescription(description);
         this.deadline = deadline;
+        if (group != null) this.group = group;
+    }
+
+    public Task() {
+
     }
 
     public LocalDateTime getDeadline() {
@@ -39,7 +48,8 @@ public class Task extends BaseTask {
     }
 
     public void updateFrom(final Task source) {
-        deadline = source.deadline;
-        group = source.group;
+        updateFromBase(source);
+        this.deadline = source.deadline;
+        this.group = source.group;
     }
 }

@@ -39,8 +39,8 @@ abstract class BaseTask {
         this.done = done;
     }
 
-    public void updateFrom(final BaseTask source) {
-        description = source.description;
-        done = source.done;
+    public void updateFromBase(final BaseTask source) {
+        this.description = source.description;
+        this.done = source.done;
     }
 }
