@@ -3,13 +3,11 @@ package io.github.gstfnk.logic;
 import io.github.gstfnk.configuration.TaskConfiguration;
 import io.github.gstfnk.model.*;
 import io.github.gstfnk.model.projection.GroupReadModel;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class ProjectService {
     private final ProjectRepository repository;
     private final TaskGroupRepository taskGroupRepository;

@@ -5,16 +5,10 @@ import io.github.gstfnk.model.TaskGroupRepository;
 import io.github.gstfnk.model.TaskRepository;
 import io.github.gstfnk.model.projection.GroupReadModel;
 import io.github.gstfnk.model.projection.GroupWriteModel;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-@RequestScope
 public class TaskGroupService {
     private final TaskGroupRepository repository;
     private final TaskRepository taskRepository;
