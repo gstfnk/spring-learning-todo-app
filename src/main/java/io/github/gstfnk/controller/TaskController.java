@@ -42,6 +42,13 @@ class TaskController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping(path = "/search/done")
+    ResponseEntity<List<Task>> readDoneTasks(@RequestParam(defaultValue = "true") boolean state) {
+        return ResponseEntity.ok(
+                repository.findByDone(state)
+        );
+    }
+
     @PostMapping
     ResponseEntity<Task> createTask(@RequestBody @Valid Task createdTask) {
         Task task = repository.save(createdTask);
@@ -58,16 +65,18 @@ class TaskController {
                     task.updateFrom(updatedTask);
                     repository.save(task);
                 });
-        return ResponseEntity.ok(updatedTask);
+        return repository.findById(id)
+                .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @Transactional
     @PatchMapping("/{id}")
     public ResponseEntity<Task> toggleTask(@PathVariable Integer id) {
-        if(!repository.existsById(id)) return ResponseEntity.notFound().build();
+        if (!repository.existsById(id)) return ResponseEntity.notFound().build();
         repository.findById(id)
                 .ifPresent(task -> task.setDone(!task.isDone()));
-        return ResponseEntity.noContent().build();
+        return repository.findById(id)
+                .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")

@@ -10,7 +10,6 @@ import org.springframework.boot.web.server.LocalServerPort;
 
 import java.time.LocalDateTime;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
