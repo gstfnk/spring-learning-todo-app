@@ -1,5 +1,6 @@
 package io.github.gstfnk.logic;
 
+import io.github.gstfnk.model.Project;
 import io.github.gstfnk.model.TaskGroup;
 import io.github.gstfnk.model.TaskGroupRepository;
 import io.github.gstfnk.model.TaskRepository;
@@ -20,7 +21,11 @@ public class TaskGroupService {
     }
 
     public GroupReadModel createGroup(GroupWriteModel source) {
-        TaskGroup result = repository.save(source.toGroup());
+        return createGroup(source, null);
+    }
+
+    GroupReadModel createGroup(GroupWriteModel source, Project project) {
+        TaskGroup result = repository.save(source.toGroup(project));
         return new GroupReadModel(result);
     }
 
