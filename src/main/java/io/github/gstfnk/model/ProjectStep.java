@@ -1,7 +1,5 @@
 package io.github.gstfnk.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 

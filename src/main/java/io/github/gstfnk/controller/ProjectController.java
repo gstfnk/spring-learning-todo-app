@@ -4,7 +4,6 @@ import io.github.gstfnk.logic.ProjectService;
 import io.github.gstfnk.model.Project;
 import io.github.gstfnk.model.ProjectStep;
 import io.github.gstfnk.model.projection.ProjectWriteModel;
-import org.dom4j.rule.Mode;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,8 +1,6 @@
 package io.github.gstfnk.model;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
