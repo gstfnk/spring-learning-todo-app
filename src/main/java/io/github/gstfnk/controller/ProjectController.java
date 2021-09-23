@@ -4,6 +4,7 @@ import io.github.gstfnk.logic.ProjectService;
 import io.github.gstfnk.model.Project;
 import io.github.gstfnk.model.ProjectStep;
 import io.github.gstfnk.model.projection.ProjectWriteModel;
+import io.micrometer.core.annotation.Timed;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,6 +49,7 @@ public class ProjectController {
         return "projects";
     }
 
+    @Timed(value = "project.create.group", histogram = true, percentiles = {0.55, 0.95, 0.99})
     @PostMapping(path = "/{id}")
     String createGroup(@ModelAttribute("project") ProjectWriteModel current,
                        Model model,
