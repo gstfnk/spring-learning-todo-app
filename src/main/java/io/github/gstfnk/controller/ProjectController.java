@@ -64,6 +64,7 @@ public class ProjectController {
         return "projects";
     }
 
+
     @ModelAttribute("projects")
     List<Project> getProjects() {
         return projectService.readAll();
