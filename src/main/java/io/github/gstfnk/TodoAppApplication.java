@@ -8,6 +8,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.validation.Validator;
 
+@EnableAsync
 @SpringBootApplication
 public class TodoAppApplication {
 

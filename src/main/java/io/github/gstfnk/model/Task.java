@@ -1,6 +1,8 @@
 package io.github.gstfnk.model;
 
 
+import io.github.gstfnk.model.event.TaskEvent;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -8,12 +10,12 @@ import java.time.LocalDateTime;
 @Table(name = "TASKS")
 public class Task extends BaseTask {
     private LocalDateTime deadline;
+    private boolean done;
     @ManyToOne
     @JoinColumn(name = "task_group_id")
     private TaskGroup group;
     @Embedded
     private final Audit audit = new Audit();
-
 
     public Task(String description, LocalDateTime deadline) {
         this(description, deadline, null);
@@ -37,6 +39,15 @@ public class Task extends BaseTask {
         this.deadline = deadline;
     }
 
+    public boolean isDone() {
+        return done;
+    }
+
+    public TaskEvent toggle() {
+        this.done = !this.done;
+        return TaskEvent.changed(this);
+    }
+
     TaskGroup getGroup() {
         return group;
     }
@@ -45,8 +56,10 @@ public class Task extends BaseTask {
         this.group = group;
     }
 
+
     public void updateFrom(final Task source) {
         updateFromBase(source);
+        this.done = source.done;
         this.deadline = source.deadline;
         this.group = source.group;
     }

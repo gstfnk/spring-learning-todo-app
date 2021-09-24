@@ -7,6 +7,7 @@ import java.util.Set;
 @Entity
 @Table(name = "TASKS_GROUPS")
 public class TaskGroup extends BaseTask {
+    private boolean done;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private Set<Task> tasks;
     @ManyToOne
@@ -14,6 +15,14 @@ public class TaskGroup extends BaseTask {
     private Project project;
 
     public TaskGroup() {
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
     public Set<Task> getTasks() {
